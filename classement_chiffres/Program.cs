@@ -1,5 +1,49 @@
-﻿List<int> chiffresAtrier = [1, 265, 36, 12, 87,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19];
+﻿using System.Diagnostics;
+using System.Timers;
+
+List<int> chiffresAtrier = [];
 List<int> chiffrestries = [0];
+
+int seed = DateTime.Now.Second;
+Random rnd = new Random(seed);
+
+Stopwatch sw = Stopwatch.StartNew();
+
+for (int indexrdm=0; indexrdm<1000000;indexrdm++)
+{
+    int randomValue = rnd.Next(0, 1000000);
+
+    // verifie si la value aléatoire n'existe pas dans le tableau
+    bool addValue = true;
+    for (int i=0; i<chiffresAtrier.Count; i++)
+    {
+        if (randomValue == chiffresAtrier[i])
+        {
+            addValue = false;
+
+            /*
+            if(indexrdm>10000)
+            {
+                Console.WriteLine($"FOUND at {i}! Index {indexrdm}, value = {randomValue}");
+            }*/
+
+        }
+
+
+    }
+
+    if(addValue)
+    {
+        chiffresAtrier.Add(randomValue);
+    }    
+}
+
+sw.Stop();
+Console.WriteLine($"Generation = {sw.ElapsedMilliseconds/1000.0f}");
+
+Stopwatch timer = new Stopwatch();
+timer.Start();
+
 //prend les chiffres de la liste "chiffresAtrier" dans l'ordre
 for (int index1 = 0; index1 < chiffresAtrier.Count; )
 {
@@ -36,8 +80,7 @@ for (int index1 = 0; index1 < chiffresAtrier.Count; )
     
 }
 chiffrestries.Remove(0);
-foreach (var chiffre in chiffrestries)
-{
-    Console.WriteLine(chiffre);
-}
-Console.WriteLine("Fini");
+
+timer.Stop();
+
+Console.WriteLine($"Fini en {timer.ElapsedMilliseconds / 1000.0f} s");
