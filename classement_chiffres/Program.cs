@@ -9,9 +9,9 @@ Random rnd = new Random(seed);
 
 Stopwatch sw = Stopwatch.StartNew();
 
-for (int indexrdm=0; indexrdm<1000000;indexrdm++)
+for (int indexrdm=0; indexrdm<60000;indexrdm++)
 {
-    int randomValue = rnd.Next(0, 1000000);
+    int randomValue = rnd.Next(0, 100000);
 
     // verifie si la value aléatoire n'existe pas dans le tableau
     bool addValue = true;
